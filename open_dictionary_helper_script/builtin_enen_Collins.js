@@ -7,9 +7,6 @@ class builtin_encn_Collins {
     }
 
     async displayName() {
-        let locale = await api.locale();
-        if (locale.indexOf('CN') != -1) return '柯林斯英汉双解(内置)';
-        if (locale.indexOf('TW') != -1) return '柯林斯英漢雙解(內置)';
         return 'Collins EN-> EN Dictionary((builtin))';
     }
 
@@ -71,10 +68,8 @@ class builtin_encn_Collins {
         for (const def of defs) {
             let definition = '';
             let pos = def.pos_en;
-            let chn_tran = def.def_cn;
             let eng_tran = def.def_en;
             pos = pos ? `<span class="pos">${pos}</span>` : '';
-            chn_tran = chn_tran ? `<span class="chn_tran">${chn_tran}</span>` : '';
             eng_tran = eng_tran ? `<span class="eng_tran">${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>` : '';
             definition = `${pos}<span class="tran">${eng_tran}</span>`;
 
