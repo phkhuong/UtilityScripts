@@ -1,5 +1,5 @@
 /* global api */
-class builtin_enen_Collins {
+class enen_Collins_built_in {
     constructor(options) {
         this.options = options;
         this.maxexample = 2;
@@ -7,7 +7,7 @@ class builtin_enen_Collins {
     }
 
     async displayName() {
-        return 'Collins EN-> EN Dictionary((builtin))';
+        return '((built-in)) Collins EN-> EN Dictionary';
     }
 
 
