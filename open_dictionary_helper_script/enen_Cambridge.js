@@ -1,5 +1,5 @@
 /* global api */
-class encn_Cambridge {
+class enen_Cambridge {
     constructor(options) {
         this.options = options;
         this.maxexample = 2;
@@ -7,10 +7,7 @@ class encn_Cambridge {
     }
 
     async displayName() {
-        let locale = await api.locale();
-        if (locale.indexOf('CN') != -1) return '剑桥英汉双解(简体)';
-        if (locale.indexOf('TW') != -1) return '劍橋英漢雙解(簡體)';
-        return 'Cambridge EN->CN Dictionary (SC)';
+        return 'Cambridge EN->EN Dictionary (SC)';
     }
 
     setOptions(options) {
@@ -88,13 +85,11 @@ class encn_Cambridge {
                     // make definition segement
                     for (const defblock of defblocks) {
                         let eng_tran = T(defblock.querySelector('.ddef_h .def'));
-                        let chn_tran = T(defblock.querySelector('.def-body .trans'));
                         if (!eng_tran) continue;
                         let definition = '';
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>`;
-                        chn_tran = `<span class='chn_tran'>${chn_tran}</span>`;
-                        let tran = `<span class='tran'>${eng_tran}${chn_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
+                        let tran = `<span class='tran'>${eng_tran}</span>`;
+                        definition += phrasehead ? `${phrasehead}` : `${pos}`;
 
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
@@ -103,8 +98,7 @@ class encn_Cambridge {
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                let chn_examp = T(examp.querySelector('.trans'));
-                                definition += `<li class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span><span class='chn_sent'>${chn_examp}</span></li>`;
+                                definition += `<li class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span></li>`;
                             }
                             definition += '</ul>';
                         }
