@@ -89,7 +89,7 @@ class enen_Cambridge {
                         let definition = '';
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>`;
                         let tran = `<span class='tran'>${eng_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}` : `${pos}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
